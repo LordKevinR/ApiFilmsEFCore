@@ -6,6 +6,7 @@
         public string Name { get; set; } = null!;
         public decimal Fortune { get; set; }
         public DateTime Birthdate { get; set; }
+		public List<FilmActor> FilmsActors { get; set; } = new List<FilmActor>();
 
-    }
+	}
 }

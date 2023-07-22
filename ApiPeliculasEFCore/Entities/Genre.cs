@@ -6,6 +6,7 @@ namespace ApiPeliculasEFCore.Entities
 	{
         public int Id { get; set; }
         public string Name { get; set; } = null!;
+        public HashSet<Film> films { get; set; } = new HashSet<Film>();
     }
 }
 

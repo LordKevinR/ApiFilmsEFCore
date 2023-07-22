@@ -28,6 +28,7 @@ namespace ApiPeliculasEFCore
 		public DbSet<Actor> Actors => Set<Actor>();
 		public DbSet<Film> Films => Set<Film>();
 		public DbSet<Comment> Comments => Set<Comment>();
+		public DbSet<FilmActor> FilmsActors => Set<FilmActor>();
 
 	}
 }
