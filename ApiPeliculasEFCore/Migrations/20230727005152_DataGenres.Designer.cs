@@ -4,6 +4,7 @@ using ApiPeliculasEFCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiPeliculasEFCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230727005152_DataGenres")]
+    partial class DataGenres
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,22 +48,6 @@ namespace ApiPeliculasEFCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Actors");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 2,
-                            Birthdate = new DateTime(1948, 12, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Fortune = 15000m,
-                            Name = "Samuel L. Jackson"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Birthdate = new DateTime(1965, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Fortune = 18000m,
-                            Name = "Robert Downey Jr."
-                        });
                 });
 
             modelBuilder.Entity("ApiPeliculasEFCore.Entities.Comment", b =>
@@ -86,29 +73,6 @@ namespace ApiPeliculasEFCore.Migrations
                     b.HasIndex("FilmId");
 
                     b.ToTable("Comments");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 2,
-                            Content = "I Love it",
-                            FilmId = 2,
-                            Recommend = true
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Content = "A very good film",
-                            FilmId = 2,
-                            Recommend = true
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Content = "I dont really like it",
-                            FilmId = 3,
-                            Recommend = false
-                        });
                 });
 
             modelBuilder.Entity("ApiPeliculasEFCore.Entities.Film", b =>
@@ -133,29 +97,6 @@ namespace ApiPeliculasEFCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Films");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 2,
-                            InTheaters = false,
-                            ReleaseDate = new DateTime(2019, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Avengers EndGame"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            InTheaters = false,
-                            ReleaseDate = new DateTime(2021, 12, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Spider-Man: No Way Home"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            InTheaters = false,
-                            ReleaseDate = new DateTime(2022, 10, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Spider-Man: Across the Spider-Verse (Part One)"
-                        });
                 });
 
             modelBuilder.Entity("ApiPeliculasEFCore.Entities.FilmActor", b =>
@@ -179,29 +120,6 @@ namespace ApiPeliculasEFCore.Migrations
                     b.HasIndex("FilmId");
 
                     b.ToTable("FilmsActors");
-
-                    b.HasData(
-                        new
-                        {
-                            ActorId = 2,
-                            FilmId = 3,
-                            Character = "Nick Fury",
-                            Order = 1
-                        },
-                        new
-                        {
-                            ActorId = 2,
-                            FilmId = 2,
-                            Character = "Nick Fury",
-                            Order = 2
-                        },
-                        new
-                        {
-                            ActorId = 3,
-                            FilmId = 2,
-                            Character = "Iron Man",
-                            Order = 1
-                        });
                 });
 
             modelBuilder.Entity("ApiPeliculasEFCore.Entities.Genre", b =>
@@ -247,23 +165,6 @@ namespace ApiPeliculasEFCore.Migrations
                     b.HasIndex("filmsId");
 
                     b.ToTable("FilmGenre");
-
-                    b.HasData(
-                        new
-                        {
-                            GenresId = 5,
-                            filmsId = 2
-                        },
-                        new
-                        {
-                            GenresId = 5,
-                            filmsId = 3
-                        },
-                        new
-                        {
-                            GenresId = 6,
-                            filmsId = 4
-                        });
                 });
 
             modelBuilder.Entity("ApiPeliculasEFCore.Entities.Comment", b =>

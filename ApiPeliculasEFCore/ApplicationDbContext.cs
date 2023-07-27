@@ -1,4 +1,5 @@
 ﻿using ApiPeliculasEFCore.Entities;
+using ApiPeliculasEFCore.Entities.Seeding;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -15,6 +16,7 @@ namespace ApiPeliculasEFCore
 		{
 			base.OnModelCreating(modelBuilder);
 			modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly()); //aplica las configuraciones que puse en Entities/Config 
+			SeedingInitial.Seed(modelBuilder);
 		}
 
 		protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)

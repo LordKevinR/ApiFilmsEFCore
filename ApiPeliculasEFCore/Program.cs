@@ -12,7 +12,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => 
 	options.UseSqlServer("name=DefaultConnection"));
-
+builder.Services.AddAutoMapper(typeof(Program));
 
 
 
