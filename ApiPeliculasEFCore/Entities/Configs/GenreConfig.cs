@@ -11,6 +11,8 @@ namespace ApiPeliculasEFCore.Entities.Configs
 			var animation = new Genre { Id = 6, Name = "Animation" };
 
 			builder.HasData(scienceFiction, animation);
+
+			builder.HasIndex(g => g.Name).IsUnique();
 		}
 	}
 }

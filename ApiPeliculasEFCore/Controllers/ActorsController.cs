@@ -75,10 +75,40 @@ namespace ApiPeliculasEFCore.Controllers
 		[HttpPost]
 		public async Task<ActionResult> Post(ActorCreationDTO actorCreationDTO)
 		{
+			var thereIsAlreadyActorWithThisName = await context.Genres.AnyAsync(g => g.Name == actorCreationDTO.Name);
+
+			if (thereIsAlreadyActorWithThisName)
+			{
+				return BadRequest("There is already an actor with the name " + actorCreationDTO.Name);
+			}
 			var actor = mapper.Map<Actor>(actorCreationDTO);
 			context.Add(actor);
 			await context.SaveChangesAsync();
 			return Ok();
 		}
-    }
+
+
+		[HttpPut("{id:int}")]
+		public async Task<ActionResult> Put(int id, ActorCreationDTO actorCreationDTO)
+		{
+			var actor = mapper.Map<Actor>(actorCreationDTO);
+			actor.Id = id;
+			context.Update(actor);
+			await context.SaveChangesAsync();
+			return Ok();
+		}
+
+		[HttpDelete("{id:int}")]
+		public async Task<ActionResult> Delete(int id)
+		{
+			var deletedRows = await context.Actors.Where(a => a.Id == id).ExecuteDeleteAsync();
+
+			if (deletedRows == 0)
+			{
+				return NotFound();
+			}
+
+			return NoContent();
+		}
+	}
 }

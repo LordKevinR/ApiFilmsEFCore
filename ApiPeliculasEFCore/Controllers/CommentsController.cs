@@ -2,6 +2,7 @@
 using ApiPeliculasEFCore.Entities;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiPeliculasEFCore.Controllers
 {
@@ -18,6 +19,7 @@ namespace ApiPeliculasEFCore.Controllers
 			this.mapper = mapper;
 		}
 
+
 		[HttpPost]
 		public async Task<ActionResult> post(int filmId, CommentCreationDTO commentCreationDTO)
 		{
@@ -27,5 +29,18 @@ namespace ApiPeliculasEFCore.Controllers
 			await context.SaveChangesAsync();
 			return Ok();
 		}
-    }
+
+		[HttpDelete]
+		public async Task<ActionResult> Delete(int id)
+		{
+			var deletedRows = await context.Comments.Where(c => c.Id == id).ExecuteDeleteAsync();
+
+			if (deletedRows == 0)
+			{
+				return NotFound();
+			}
+
+			return NoContent();
+		}
+	}
 }
